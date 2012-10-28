@@ -8,7 +8,7 @@ var sizmarquee = function () {
 
 	loadImage = function(position) {
 		gParams.images[position].img = new Image();
-		gParams.images[position].img.onload = imageLoaded(position);
+		gParams.images[position].img.onLoad = imageLoaded(position);
 		gParams.images[position].img.src = gParams.images[position].src;
 
 	}
@@ -39,6 +39,10 @@ var sizmarquee = function () {
 		for (i=0, j=gParams.images.length; i<j; i++) {
 			gParams.images[i].loaded = false;
 		}
+		
+		window.addEventListener('blur', function() {window.clearInterval(intervalTimer);});
+		window.addEventListener('focus', function() {intervalTimer = setInterval(function () { advance(); }, gParams.interval);});
+		
 		loadImage(0);
 	}
 	
