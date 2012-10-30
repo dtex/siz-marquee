@@ -40,9 +40,14 @@ var sizmarquee = function () {
 			gParams.images[i].loaded = false;
 		}
 		
-		window.addEventListener('blur', function() {window.clearInterval(intervalTimer);});
-		window.addEventListener('focus', function() {intervalTimer = setInterval(function () { advance(); }, gParams.interval);});
-		
+		if (!window.addEventListener) {
+			window.attachEvent('blur', function() {window.clearInterval(intervalTimer);});
+			window.attachEvent('focus', function() {intervalTimer = setInterval(function () { advance(); }, gParams.interval);});
+    		} else {
+		    window.addEventListener('blur', function() {window.clearInterval(intervalTimer);});
+		    window.addEventListener('focus', function() {intervalTimer = setInterval(function () { advance(); }, gParams.interval);});
+    		}
+
 		loadImage(0);
 	}
 	
