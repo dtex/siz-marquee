@@ -8,7 +8,7 @@ var sizmarquee = function () {
 
 	loadImage = function(position) {
 		gParams.images[position].img = new Image();
-		gParams.images[position].img.onLoad = imageLoaded(position);
+		gParams.images[position].img.onload = function() {imageLoaded(position);};
 		gParams.images[position].img.src = gParams.images[position].src;
 
 	}
